@@ -1,6 +1,7 @@
 {
     "name": "sopheos/pebble_burn",
     "description": "PHP burn library",
+    "license": "MIT",
     "repositories": [
         {
             "type": "vcs",
