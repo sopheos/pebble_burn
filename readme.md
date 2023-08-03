@@ -7,7 +7,7 @@ Gestion des dépendances entre les services d'une application
 ## Router
 
 
-Le système de route permet d'associer un traitement à une requète (HTTP / CLI).
+Le système de route permet d'associer un traitement à une requête (HTTP / CLI).
 
 Le routeur `\Pebble\Burn\Router` est un singleton.
 
@@ -16,10 +16,10 @@ Le routeur `\Pebble\Burn\Router` est un singleton.
 La méthode `add($http_method, $uri, $controller, $method = null) : Router` permet
 d'ajouter une nouvelle route. Cette méthode est chainable.
 
-* *`$http_method`* Méthode de la requète HTTP (GET, POST, ...) ou CLI.
+* *`$http_method`* Méthode de la requête HTTP (GET, POST, ...) ou CLI.
 * *`$uri`* URI correspondant à la route.
-* *`$controller`* Nom du controlleur OU un élément `callable`.
-* *`$method`* Nom de la méthode du controlleur si celui-ci n'est pas de type `callable`.
+* *`$controller`* Nom du contrôleur OU un élément `callable`.
+* *`$method`* Nom de la méthode du contrôleur si celui-ci n'est pas de type `callable`.
 
 Raccourcis : 
 
@@ -72,4 +72,4 @@ Router::getInstance()->run($http_method, $uri)->execute();
 # Exceptions
 
 Si une route n'est pas trouvée, ou que sa fonction de rappel n'est pas 
-appelable, une erreur de type `\Pebble\Burn\RouteException` est déclanchée.
+appelable, une erreur de type `\Pebble\Burn\RouteException` est déclenchée.
