@@ -1,0 +1,23 @@
+{
+    "name": "sopheos/pebble_burn",
+    "description": "PHP burn library",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "www@g.sopheos.com:git/pebble_http.git"
+        }
+    ],
+    "require": {
+        "php": ">=8.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pebble\\Burn\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
