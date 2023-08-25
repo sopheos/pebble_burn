@@ -46,6 +46,13 @@ class Services
         return self::$instance[__CLASS__] ?? new static();
     }
 
+    public static function destroy()
+    {
+        if (isset(self::$instance[__CLASS__])) {
+            unset(self::$instance[__CLASS__]);
+        }
+    }
+
     protected function start()
     {
     }
