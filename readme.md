@@ -69,7 +69,7 @@ $uri = parse_url('http://dummy' . $_SERVER['REQUEST_URI'], PHP_URL_PATH);
 Router::getInstance()->run($http_method, $uri)->execute();
 ````
 
-# Exceptions
+# Exception
 
 Si une route n'est pas trouvée, ou que sa fonction de rappel n'est pas 
 appelable, une erreur de type `\Pebble\Burn\RouteException` est déclenchée.
