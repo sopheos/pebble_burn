@@ -7,7 +7,7 @@ namespace Pebble\Burn;
  *
  * @author mathieu
  */
-class Services
+abstract class Services
 {
     const ENV_PROD = 'production';
     const ENV_TEST = 'testing';
@@ -18,28 +18,16 @@ class Services
 
     // -------------------------------------------------------------------------
 
-    /**
-     * Constructor
-     *
-     * @param array $config
-     */
-    protected function __construct(array $config = [])
+    protected function __construct()
     {
-        $this->config = $config;
         $this->start();
     }
 
-    /**
-     * Destructor
-     */
     public function __destruct()
     {
         $this->stop();
     }
 
-    /**
-     * @return static
-     */
     public static function getInstance(): static
     {
         return self::$instance[static::class] ?? (self::$instance[static::class] = new static);
@@ -58,33 +46,34 @@ class Services
 
     // -------------------------------------------------------------------------
 
-    /**
-     * @return string
-     */
+    public function setConfig(array $config): static
+    {
+        $this->config = $config;
+        return $this;
+    }
+
+    public function config(string $name): mixed
+    {
+        return $this->config[$name] ?? null;
+    }
+
+    // -------------------------------------------------------------------------
+
     public function env(): string
     {
         return $this->config['env'] ?? self::ENV_PROD;
     }
 
-    /**
-     * @return boolean
-     */
     public function isProd(): bool
     {
         return $this->env() === self::ENV_PROD;
     }
 
-    /**
-     * @return boolean
-     */
     public function isTest(): bool
     {
         return $this->env() === self::ENV_TEST;
     }
 
-    /**
-     * @return boolean
-     */
     public function isDev(): bool
     {
         return $this->env() === self::ENV_DEV;
@@ -92,24 +81,9 @@ class Services
 
     // -------------------------------------------------------------------------
 
-    /**
-     * Returns the path of the project folder
-     *
-     * @param string $path
-     * @return string
-     */
     public function path(string $path = ''): string
     {
         return ($this->config['path'] ?? '') . $path;
-    }
-
-    /**
-     * @param string $name
-     * @return mixed
-     */
-    public function config(string $name): mixed
-    {
-        return $this->config[$name] ?? null;
     }
 
     // -------------------------------------------------------------------------
