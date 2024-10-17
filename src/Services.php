@@ -2,6 +2,8 @@
 
 namespace Pebble\Burn;
 
+use InvalidArgumentException;
+
 /**
  * Services
  *
@@ -13,7 +15,8 @@ abstract class Services
     const ENV_TEST = 'testing';
     const ENV_DEV = 'developpement';
 
-    private static array $instance = [];
+    private static array $instances = [];
+    private ?string $env = null;
     private array $config = [];
 
     // -------------------------------------------------------------------------
@@ -30,13 +33,13 @@ abstract class Services
 
     public static function getInstance(): static
     {
-        return self::$instance[static::class] ?? (self::$instance[static::class] = new static);
+        return self::$instances[static::class] ?? (self::$instances[static::class] = new static);
     }
 
     public static function destroy()
     {
-        if (isset(self::$instance[static::class])) {
-            unset(self::$instance[static::class]);
+        if (isset(self::$instances[static::class])) {
+            unset(self::$instances[static::class]);
         }
     }
 
@@ -59,9 +62,19 @@ abstract class Services
 
     // -------------------------------------------------------------------------
 
+    public function setEnv(string $env): static
+    {
+        $this->env = $env;
+        return $this;
+    }
+
     public function env(): string
     {
-        return $this->config['env'] ?? self::ENV_PROD;
+        if ($this->env === null) {
+            throw new InvalidArgumentException("Environnement is not defined");
+        }
+
+        return $this->env;
     }
 
     public function isProd(): bool
