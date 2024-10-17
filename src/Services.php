@@ -26,7 +26,6 @@ class Services
     protected function __construct(array $config = [])
     {
         $this->config = $config;
-        self::$instance[__CLASS__] = $this;
         $this->start();
     }
 
@@ -43,23 +42,19 @@ class Services
      */
     public static function getInstance(): static
     {
-        return self::$instance[__CLASS__] ?? new static();
+        return self::$instance[static::class] ?? (self::$instance[static::class] = new static);
     }
 
     public static function destroy()
     {
-        if (isset(self::$instance[__CLASS__])) {
-            unset(self::$instance[__CLASS__]);
+        if (isset(self::$instance[static::class])) {
+            unset(self::$instance[static::class]);
         }
     }
 
-    protected function start()
-    {
-    }
+    protected function start() {}
 
-    protected function stop()
-    {
-    }
+    protected function stop() {}
 
     // -------------------------------------------------------------------------
 
