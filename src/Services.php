@@ -21,11 +21,6 @@ abstract class Services
 
     // -------------------------------------------------------------------------
 
-    protected function __construct()
-    {
-        $this->start();
-    }
-
     public function __destruct()
     {
         $this->stop();
@@ -43,9 +38,9 @@ abstract class Services
         }
     }
 
-    protected function start() {}
+    public function start() {}
 
-    protected function stop() {}
+    public function stop() {}
 
     // -------------------------------------------------------------------------
 
