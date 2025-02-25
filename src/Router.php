@@ -14,7 +14,7 @@ class Router
     private static ?Router $instance = null;
 
     /**
-     * @var Route[][][]
+     * @var Route[][]
      */
     private array $routes = [];
     private array $wildcards = [];
