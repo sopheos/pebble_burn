@@ -1,13 +1,7 @@
 {
     "name": "sopheos/pebble_burn",
-    "description": "PHP burn library",
+    "description": "Minimal HTTP/CLI router and application services base class",
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "www@g.sopheos.com:git/pebble_http.git"
-        }
-    ],
     "require": {
         "php": ">=8.1.0"
     },
